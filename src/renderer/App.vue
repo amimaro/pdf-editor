@@ -11,5 +11,15 @@
 </script>
 
 <style>
-  /* CSS */
+.table {
+  display: table;
+}
+
+.row {
+  display: table-row;
+}
+
+.cell {
+  display: table-cell;
+}
 </style>
