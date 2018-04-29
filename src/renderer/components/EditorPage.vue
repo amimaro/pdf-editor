@@ -10,13 +10,16 @@ export default {
   name: 'editor-page',
   components: {},
   data() {
-    return {}
+    return {
+      path: ''
+    }
   },
-  created: function() {
-    console.log(JSON.parse(localStorage.getItem('pdf-editor')))
+  created: function () {
+    let obj = JSON.parse(localStorage.getItem('pdf-editor'))
+    this.path = obj.path
   },
   methods: {
-    home: function() {
+    home: function () {
       this.$router.push('/')
     }
   }
