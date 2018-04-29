@@ -31,7 +31,10 @@ export default {
         alert('Select a PDF')
         return
       }
-      console.log(file)
+      localStorage.setItem('pdf-editor', JSON.stringify({
+        path: file.path
+      }))
+      this.$router.push('editor')
     }
   }
 }
