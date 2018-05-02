@@ -1,11 +1,11 @@
 <template>
-  <div class="drop-file" @dragover.prevent @drop="onDrop">
-    <div class="helper"></div>
-    <label class="btn">
-  	    Select or Drop a PDF
-  	    <input type="file" @change="onChange">
-    </label>
-  </div>
+<div class="drop-file" @dragover.prevent @drop="onDrop">
+  <div class="helper"></div>
+  <label class="btn">
+    Select or Drop a PDF
+    <input type="file" @change="onChange">
+  </label>
+</div>
 </template>
 
 <script>
@@ -16,7 +16,7 @@ export default {
     return {}
   },
   methods: {
-    onDrop: function (event) {
+    onDrop: function(event) {
       event.stopPropagation()
       event.preventDefault()
       let files = event.dataTransfer.files
@@ -31,14 +31,19 @@ export default {
         alert('Select a PDF')
         return
       }
-      localStorage.setItem('pdf-editor', JSON.stringify({
-        path: file.path
-      }))
+      let fileObj = {
+        'lastModified': file.lastModified,
+        'lastModifiedDate': file.lastModifiedDate,
+        'name': file.name,
+        'size': file.size,
+        'type': file.type,
+        'webkitRelativePath': file.webkitRelativePath
+      }
+      localStorage.setItem('pdf-editor', JSON.stringify(fileObj))
       this.$router.push('editor')
     }
   }
 }
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -48,12 +53,14 @@ export default {
   margin: 0;
   padding: 0;
 }
+
 body {
   font-family: 'Quicksand', sans-serif;
   padding: 10px;
   height: 100%;
   text-align: center;
 }
+
 .btn {
   background-color: #4c39d3;
   border: 0;
@@ -64,33 +71,41 @@ body {
   padding: 15px 35px;
   position: relative;
 }
+
 .btn:hover {
   background-color: #402072;
 }
+
 input[type="file"] {
   position: absolute;
   opacity: 0;
   z-index: -1;
 }
+
 .align-center {
   text-align: center;
 }
+
 .helper {
   height: 100%;
   display: inline-block;
   vertical-align: middle;
   width: 0;
 }
+
 .hidden {
   display: none !important;
 }
+
 .hidden.image {
   display: inline-block !important;
 }
+
 .display-inline {
   display: inline-block;
   vertical-align: middle;
 }
+
 .img {
   border: 1px solid #f6f6f6;
   display: inline-block;
@@ -99,6 +114,7 @@ input[type="file"] {
   max-width: 80%;
   width: auto;
 }
+
 .drop-file {
   margin-top: 20px;
   background-color: #f0f2ff;
