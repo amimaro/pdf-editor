@@ -31,15 +31,12 @@ export default {
         alert('Select a PDF')
         return
       }
-      let fileObj = {
-        'lastModified': file.lastModified,
-        'lastModifiedDate': file.lastModifiedDate,
-        'name': file.name,
-        'size': file.size,
-        'type': file.type,
-        'webkitRelativePath': file.webkitRelativePath
+      let reader = new FileReader();
+      reader.readAsArrayBuffer(file);
+      reader.onload = function(e) {
+        const uint8Array = new Uint8Array(reader.result)
+        localStorage.setItem('pdf-editor', JSON.stringify(uint8Array))
       }
-      localStorage.setItem('pdf-editor', JSON.stringify(fileObj))
       this.$router.push('editor')
     }
   }

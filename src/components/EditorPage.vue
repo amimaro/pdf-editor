@@ -16,7 +16,7 @@ export default {
   },
   created: function() {
     let file = JSON.parse(localStorage.getItem('pdf-editor'))
-    console.log(JSON.stringify(file))
+    console.log(file)
   },
   methods: {
     home: function() {

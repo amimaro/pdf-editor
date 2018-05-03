@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "fs": "0.0.1-security",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1"
   },
