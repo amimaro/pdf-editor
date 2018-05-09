@@ -9,6 +9,8 @@
 </template>
 
 <script>
+const pdfjsLib = require('pdfjs-dist')
+
 export default {
   name: 'landing-page',
   components: {},
@@ -27,18 +29,19 @@ export default {
       this.loadFile(files[0])
     },
     loadFile(file) {
+      const self = this
       if (!file.type.match('application/pdf')) {
         alert('Select a PDF')
         return
       }
-      let reader = new FileReader();
-      reader.readAsArrayBuffer(file);
+      let reader = new FileReader()
+      reader.readAsArrayBuffer(file)
       reader.onload = function(e) {
         const uint8Array = new Uint8Array(reader.result)
-        localStorage.setItem('pdf-editor', JSON.stringify(uint8Array))
+        
       }
-      this.$router.push('editor')
-    }
+      // this.$router.push('editor')
+    },
   }
 }
 </script>

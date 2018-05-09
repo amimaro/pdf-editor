@@ -6,6 +6,9 @@
 </template>
 
 <script>
+
+const pdfjsLib = require('pdfjs-dist');
+
 export default {
   name: 'editor-page',
   components: {},
@@ -16,7 +19,20 @@ export default {
   },
   created: function() {
     let file = JSON.parse(localStorage.getItem('pdf-editor'))
+    console.log('pdfjsLib')
     console.log(file)
+    let reader = new FileReader();
+    // reader.readAsArrayBuffer(file);
+    // reader.onload = function(e) {
+    //   const uint8Array = new Uint8Array(reader.result)
+    //   console.log(uint8Array)
+    //   // localStorage.setItem('pdf-editor', JSON.stringify(uint8Array))
+    // }
+    // pdfjsLib.getDocument({
+    //   data: new Uint8Array(file),
+    //   nativeImageDecoderSupport: pdfjsLib.NativeImageDecoding.DISPLAY
+    // })
+    // console.log(file)
   },
   methods: {
     home: function() {
